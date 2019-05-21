@@ -26,6 +26,10 @@ public class Thread_A extends Thread {
 					obj.wait();
 					System.out.println("wait end  " + System.currentTimeMillis());
 				}
+				// 执行完毕后在唤醒其他等待线程
+				Thread.sleep(1000);
+				System.out.println("睡眠了一秒，唤醒等待线程。");
+				obj.notify();
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

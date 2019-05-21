@@ -23,7 +23,10 @@ public class Thread_B extends Thread{
     				// 判断节点是否等于5 等于就通知线程A 执行
     				if(SyncObject.size() == 5) {
     					System.out.println("*********");
+    					//唤醒其他线程
     					obj.notify();
+    					//自己放弃cpu 等待唤醒
+    					obj.wait();
     				}
     				System.out.println("添加了 \t"+SyncObject.size()+"个节点！");
     				Thread.sleep(1500);
