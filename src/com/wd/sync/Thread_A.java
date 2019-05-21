@@ -20,8 +20,8 @@ public class Thread_A extends Thread{
         for (int i = 0; i < 5; i++) {
             this.obj.addMethod(1);
             try {
-                Thread.sleep(300);
-                System.out.println("线程  A:\t"+this.obj);
+                Thread.sleep(1000);
+                System.out.println("线程  A:\t"+this.obj.getNum());
             } catch (Exception e) {
                 e.printStackTrace();
             }

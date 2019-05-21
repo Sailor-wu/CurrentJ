@@ -22,7 +22,7 @@ public class Thread_B extends Thread{
             this.obj.prevMethod(1);
             try {
                 Thread.sleep(300);
-                System.out.println(" ??  B:\t"+this.obj);
+                System.out.println(" ??  B:\t"+this.obj.getNum());
             } catch (Exception e) {
                 e.printStackTrace();
             }
