@@ -1,0 +1,29 @@
+package com.wd.pipistream.runnableep;
+
+import java.io.IOException;
+
+import javax.sound.sampled.ReverbType;
+
+public class StartMain {
+
+	public static void main(String[] args) {
+		SendStream sendStream = new SendStream();
+		String mess="这里是要输出的管道流信息gfdh hgfdhgfd hgfdh gdfh gdhgdh gdh gdfh gddhgfdhgfddghgfdhgdrgggggghjgjhgfjhgfjhgfjhfhgfdh gdfh gdhgdh gdh gdfh gddhgfdhgfddghgfdhgdrgggggghjgjhgfjhgfjhgfjhfhgfdh gdfh gdhgdh gdh gdfh gddhgfdhgfddghgfdhgdrgggggghjgjhgfjhgfjhgfjhfhgfdh gdfh gdhgdh gdh gdfh gddhgfdhgfddghgfdhgdrgggggghjgjhgfjhgfjhgfjhfhgfdh gdfh gdhgdh gdh gdfh gddhgfdhgfddghgfdhgdrgggggghjgjhgfjhgfjhgfjhfhgfdhghggggggghjgjhgfjhgfjhggggggghjgjhgfjhgfjhggggggghjgjhgfjhgfjhhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrdhgdrhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdrhggggggghjgjhgfjhgfjhgfjhfhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfdhgfddghgfdhgdretrewtrewtggggggggggggggfgfdgfdsgfdsgfdsgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggweqrewqrgggggggggggggggggggggggggggggggggggggrewrewrewrewrewrereggggg。。。。这里是要输出的管道流信息gfdh hgfdhgfd hgfdh gdfh gdhgdh gdh gdfh gdh  hgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggweqrewqrgggggggggggggggggggggggggggggggggggggrewrewrewrewrewrereggggg。。。。这里是要输出的管道流信息gfdh hgfdhgfd hgfdh gdfh gdhgdh gdh gdfh gdh  hgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggweqrewqrgggggggggggggggggggggggggggggggggggggrewrewrewrewrewrereggggg。。。。这里是要输出的管道流信息gfdh hgfdhgfd hgfdh gdfh gdhgdh gdh gdfh gdh  hgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggweqrewqrgggggggggggggggggggggggggggggggggggggrewrewrewrewrewrereggggg。。。。fgdfgdfgdfggfdg";
+		System.out.println(mess.length());
+		sendStream.setWriteMessage(mess);
+		
+		ReciveStream reciveStream = new ReciveStream();
+		// 链接输出输入管道
+		try {
+			sendStream.getOutStream().connect(reciveStream.getInputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//  开启线程
+		new Thread(sendStream).start();
+		
+		new Thread(reciveStream).start();
+		
+	}
+
+}
