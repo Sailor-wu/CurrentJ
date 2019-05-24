@@ -17,4 +17,31 @@ push(e):入栈。
 pop():出栈。 
 peek():返回队首元素，但是不删除 。
 
+new Thread 的弊端
+1.每次都new 新建对象性能差。
+2.线程缺乏统一管理，可能无限制新建线程，相互竞争。及可能占用过多的系统资源导致死机或者OOM（内存溢出）
+3.缺乏更多功能，如定时执行，定期执行，线程中断。
 
+线程池的好处：
+1.重用存在的线程，减少对象创建，消亡的开销，性能较好。
+2.可有小控制最大并发线程数，提高系统资源的使用率，同时避免过多资源竞争，便面堵塞。
+3.提供定时执行，定期执行，单线程，并发数控制等功能、
+
+Java通过Executors提供四种线程池，分别为：
+newCachedThreadPool         创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+newFixedThreadPool          创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
+newScheduledThreadPool      创建一个定长线程池，支持定时及周期性任务执行。
+newSingleThreadExecutor     创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行
+
+
+
+int corePoolSize   要保存在池中的线程的数量，如果他们是空闲状态，除非设置了 allowCoreThreadTimeOut（
+        allowCoreThreadTimeOut为true  --》该值为true，则线程池数量最后销毁到0个。
+        allowCoreThreadTimeOut为false  ---》销毁机制：超过核心线程数时，而且（超过最大值或者timeout过），就会销毁。）
+int maximumPoolSize,                线程池中默认的最大连接数
+long keepAliveTime,                 当线程数大于核心时，此为终止前多余的空闲线程等待新任务的最长时间。
+TimeUnit unit,                      指定keepAliveTime的事件单位
+BlockingQueue<Runnable> workQueue   执行的任务
+ThreadFactory threadFactory,        线程工厂
+
+RejectedExecutionHandler            提供了对于拒绝任务的处理的自定方法的机会。
