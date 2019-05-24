@@ -16,6 +16,7 @@ public class Container {
 
 	/*单例模式  容器只有一个*/
 	private static final Container ins = new Container();
+	
 	public static Container getInstance() {
 		return ins;
 	}
@@ -27,21 +28,18 @@ public class Container {
 	 * （其实就是通过将ReentrantLock设置为true来达到这种公平性的：即等待时间最长的线程会先操作）。
 	 * 通常，公平性会使你在性能上付出代价，只有在的确非常需要的时候再使用它。它是基于数组的阻塞循环队列，此队列按 FIFO（先进先出）原则对元素进行排序。
 	 */
-	public BlockingQueue<String> rongQi = new ArrayBlockingQueue<String>(10, false);
+	BlockingQueue<String> rongQi = new ArrayBlockingQueue<String>(10,true);
 	
 	/**
 	 * 生产对象，放在容器里面
 	 * 这里生产字符串
+	 * @throws InterruptedException 
 	 */
-	public  void produce() {
-		try {
+	public  void produce() throws InterruptedException {
 			//  put 方法放入一个字符串，如果容器满了，等待位置
 			String randomString = getRandomString(5);
 			System.out.println("生产了：\t"+randomString);
 			rongQi.put(randomString);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -51,7 +49,8 @@ public class Container {
 	 */
 	public String takeStr() throws InterruptedException {
 		// 取，如果容器为空，等待有字符串
-		return rongQi.take();
+		String take = rongQi.take();
+		return take;
 	}
 	
 	/**

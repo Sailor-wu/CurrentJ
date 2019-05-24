@@ -11,15 +11,20 @@ import java.util.concurrent.Executors;
  */
 public class TestQueue {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		ExecutorService service = Executors.newCachedThreadPool();
 		Producer producer = new Producer();
 		Consumer consumer = new Consumer();
 		service.submit(producer);
+//		Thread.sleep(100);
 		service.submit(consumer);
 		
 		//  20秒之后，停止生产和消费
-		Thread.sleep(120000);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		service.shutdownNow();
 	}
 }

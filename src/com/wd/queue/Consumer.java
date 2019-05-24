@@ -12,16 +12,20 @@ public class Consumer implements Runnable{
 	Container ins = Container.getInstance();
 	@Override
 	public void run() {
-		System.out.println("===========消费者开始消费==========");
+
 		try {
-			String takeStr = ins.takeStr();
-			System.out.println("===========消费者消费了："+takeStr+"=====剩下："+ins.getSize()+"个！ =====");
-			System.out.println("下次消费是二秒后！");
-			Thread.sleep(2000);
+//			if(Thread.currentThread().isInterrupted()){  
+//                System.out.println("Someone interrupted me.");
+//                Thread.currentThread().wait();
+//            }else{  
+            	System.out.println("===========消费者开始消费==========");
+                String takeStr = ins.takeStr();
+                System.out.println("===========消费者消费了："+takeStr+"=====剩下："+ins.getSize()+"个！ =====");
+                Thread.currentThread().notifyAll();
+                Thread.sleep(1000);
+//            }
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			
 		}
 	}
-
-	
 }
