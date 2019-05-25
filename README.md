@@ -45,3 +45,33 @@ BlockingQueue<Runnable> workQueue   执行的任务
 ThreadFactory threadFactory,        线程工厂
 
 RejectedExecutionHandler            提供了对于拒绝任务的处理的自定方法的机会。
+
+
+
+--**************
+自定义注解
+Java 提供的四种注解，负责创建新的注解
+@target
+        表示该注解可以用在什么地方，参数有：
+        CONSTRUCTOR     构造器
+        FIELD           域声明（包括enum实例）
+        local_variable  局部变量声明
+        method          方法
+        package         包
+        parameter       参数声明
+        type            类、接口(包括注解类型)、 enum声明
+
+
+@Retention      
+        表示需要在什么级别保存改注解信息。可选参数
+        source          注解将被编译器丢弃        
+        class           注解在class文件中可用，但是会被VM丢弃
+        runtime         vm将在运行期间保留注解，因此可以通过反射机制读取注解的信息
+
+@Document
+        将注解包含在javaDoc中
+
+@Inherited
+        允许子类继承父类中的注解
+
+        
