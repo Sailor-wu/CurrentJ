@@ -67,6 +67,8 @@ Java 提供的四种注解，负责创建新的注解
         source          注解将被编译器丢弃        
         class           注解在class文件中可用，但是会被VM丢弃
         runtime         vm将在运行期间保留注解，因此可以通过反射机制读取注解的信息
+@Retention元注解：其三种取值：RetentionPolicy.SOURCE、RetentionPolicy.CLASS、RetentionPolicy.RUNTIME
+                   分别对应：Java源文件(.java文件)---->.class文件---->内存中的字节码
 
 @Document
         将注解包含在javaDoc中
@@ -74,4 +76,7 @@ Java 提供的四种注解，负责创建新的注解
 @Inherited
         允许子类继承父类中的注解
 
-        
+
+
+
+测试 lambda 表达式
