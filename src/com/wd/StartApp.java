@@ -1,8 +1,8 @@
 package com.wd;
 
-import com.wd.sync.SyncObject;
-import com.wd.sync.Thread_A;
-import com.wd.sync.Thread_B;
+import com.wd.waitT.SyncObject;
+import com.wd.waitT.Thread_A;
+import com.wd.waitT.Thread_B;
 
 /**
  * desc 启动测试类
@@ -20,12 +20,29 @@ public class StartApp {
 		 * 这种方式，本质上就是“共享内存”式的通信。
 		 * 多个线程需要访问同一个共享变量，谁拿到了锁（获得了访问权限），谁就可以执行。
 		 */
-		SyncObject object = new SyncObject();
-		Thread_A a = new Thread_A(object);
-		a.start();
+//		SyncObject object = new SyncObject();
+//		Thread_A a = new Thread_A(object);
+//		a.start();
+//		
+//		Thread_B b = new Thread_B(object);
+//		b.start();
 		
-		Thread_B b = new Thread_B(object);
-		b.start();
+		//**********************************************************
+		Object object = new Object();
+		try {
+			Thread_A a = new Thread_A(object);
+			a.start();
+			//  停止一会 确保A线程已经是处于wait状态
+			Thread.sleep(50);
+			// 创建 B 线程来唤醒A 线程
+			Thread_B b = new Thread_B(object);
+			b.start();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 }
